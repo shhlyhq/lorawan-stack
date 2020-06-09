@@ -27,14 +27,26 @@ import (
 func TestCORS(t *testing.T) {
 	a := assertions.New(t)
 
-	m := CORS(CORSConfig{
+	config := CORSConfig{
 		AllowedHeaders:   []string{"X-Allowed-Header"},
 		AllowedMethods:   []string{http.MethodPost, http.MethodPut, http.MethodDelete},
 		AllowedOrigins:   []string{"http://localhost"},
 		ExposedHeaders:   []string{"X-Exposed-Header"},
 		MaxAge:           600,
 		AllowCredentials: true,
-	})
+	}
+
+	m := CORS(nil, config)
+
+	skipTrue := func(r *http.Request) bool {
+		return true
+	}
+	skipFalse := func(r *http.Request) bool {
+		return false
+	}
+
+	mSkipTrue := CORS(skipTrue, config)
+	mSkipFalse := CORS(skipFalse, config)
 
 	t.Run("Cross Origin Request", func(t *testing.T) {
 		r := httptest.NewRequest(http.MethodPut, "/", nil)
@@ -134,5 +146,41 @@ func TestCORS(t *testing.T) {
 
 		body, _ := ioutil.ReadAll(res.Body)
 		a.So(body, should.BeEmpty)
+	})
+
+	t.Run("Skip CORS if skip function returns true", func(t *testing.T) {
+		r := httptest.NewRequest(http.MethodPut, "/", nil)
+		r.Header.Set("Origin", "http://localhost")
+		rec := httptest.NewRecorder()
+		mSkipTrue(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("CORS-Enabled"))
+		})).ServeHTTP(rec, r)
+		res := rec.Result()
+
+		a.So(res.StatusCode, should.Equal, http.StatusOK)
+		a.So(res.Header.Get("Access-Control-Allow-Origin"), should.BeEmpty)
+		a.So(res.Header.Get("Access-Control-Expose-Headers"), should.BeEmpty)
+		a.So(res.Header.Get("Access-Control-Allow-Credentials"), should.BeEmpty)
+
+		body, _ := ioutil.ReadAll(res.Body)
+		a.So(string(body), should.Equal, "CORS-Enabled")
+	})
+
+	t.Run("Don't skip CORS if skip function returns false", func(t *testing.T) {
+		r := httptest.NewRequest(http.MethodPut, "/", nil)
+		r.Header.Set("Origin", "http://localhost")
+		rec := httptest.NewRecorder()
+		mSkipFalse(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("CORS-Enabled"))
+		})).ServeHTTP(rec, r)
+		res := rec.Result()
+
+		a.So(res.StatusCode, should.Equal, http.StatusOK)
+		a.So(res.Header.Get("Access-Control-Allow-Origin"), should.Equal, "http://localhost")
+		a.So(res.Header.Get("Access-Control-Expose-Headers"), should.ContainSubstring, "X-Exposed-Header")
+		a.So(res.Header.Get("Access-Control-Allow-Credentials"), should.Equal, "true")
+
+		body, _ := ioutil.ReadAll(res.Body)
+		a.So(string(body), should.Equal, "CORS-Enabled")
 	})
 }
