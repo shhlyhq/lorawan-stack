@@ -4582,7 +4582,7 @@
   },
   "error:pkg/identityserver:token_expired": {
     "translations": {
-      "en": "access token expired"
+      "en": "token expired"
     },
     "description": {
       "package": "pkg/identityserver",
@@ -4591,7 +4591,7 @@
   },
   "error:pkg/identityserver:token_not_found": {
     "translations": {
-      "en": "access token not found"
+      "en": "token not found"
     },
     "description": {
       "package": "pkg/identityserver",
