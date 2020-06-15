@@ -251,72 +251,56 @@ DownlinkPathConstraint:
   name: DownlinkPathConstraint
   values:
   - name: DOWNLINK_PATH_CONSTRAINT_NONE
-    comment: |2
-       Indicates that the gateway can be selected for downlink without constraints by the Network Server.
+    comment: Indicates that the gateway can be selected for downlink without constraints by the Network Server.
     value: 0
   - name: DOWNLINK_PATH_CONSTRAINT_PREFER_OTHER
-    comment: |2
-       Indicates that the gateway can be selected for downlink only if no other or better gateway can be selected.
+    comment: Indicates that the gateway can be selected for downlink only if no other or better gateway can be selected.
     value: 1
   - name: DOWNLINK_PATH_CONSTRAINT_NEVER
-    comment: |2
-       Indicates that this gateway will never be selected for downlink, even if that results in no available downlink path.
+    comment: Indicates that this gateway will never be selected for downlink, even if that results in no available downlink path.
     value: 2
 GrantType:
   name: GrantType
-  comment: |2
-     The OAuth2 flows an OAuth client can use to get an access token.
+  comment: The OAuth2 flows an OAuth client can use to get an access token.
   values:
   - name: GRANT_AUTHORIZATION_CODE
-    comment: |2
-       Grant type used to exchange an authorization code for an access token.
+    comment: Grant type used to exchange an authorization code for an access token.
     value: 0
   - name: GRANT_PASSWORD
-    comment: |2
-       Grant type used to exchange a user ID and password for an access token.
+    comment: Grant type used to exchange a user ID and password for an access token.
     value: 1
   - name: GRANT_REFRESH_TOKEN
-    comment: |2
-       Grant type used to exchange a refresh token for an access token.
+    comment: Grant type used to exchange a refresh token for an access token.
     value: 2
 LocationSource:
   name: LocationSource
   values:
   - name: SOURCE_UNKNOWN
-    comment: |2
-       The source of the location is not known or not set.
+    comment: The source of the location is not known or not set.
     value: 0
   - name: SOURCE_GPS
-    comment: |2
-       The location is determined by GPS.
+    comment: The location is determined by GPS.
     value: 1
   - name: SOURCE_REGISTRY
-    comment: |2
-       The location is set in and updated from a registry.
+    comment: The location is set in and updated from a registry.
     value: 3
   - name: SOURCE_IP_GEOLOCATION
-    comment: |2
-       The location is estimated with IP geolocation.
+    comment: The location is estimated with IP geolocation.
     value: 4
   - name: SOURCE_WIFI_RSSI_GEOLOCATION
-    comment: |2
-       The location is estimated with WiFi RSSI geolocation.
+    comment: The location is estimated with WiFi RSSI geolocation.
     value: 5
   - name: SOURCE_BT_RSSI_GEOLOCATION
-    comment: |2
-       The location is estimated with BT/BLE RSSI geolocation.
+    comment: The location is estimated with BT/BLE RSSI geolocation.
     value: 6
   - name: SOURCE_LORA_RSSI_GEOLOCATION
-    comment: |2
-       The location is estimated with LoRa RSSI geolocation.
+    comment: The location is estimated with LoRa RSSI geolocation.
     value: 7
   - name: SOURCE_LORA_TDOA_GEOLOCATION
-    comment: |2
-       The location is estimated with LoRa TDOA geolocation.
+    comment: The location is estimated with LoRa TDOA geolocation.
     value: 8
   - name: SOURCE_COMBINED_GEOLOCATION
-    comment: |2
-       The location is estimated by a combination of geolocation sources.
+    comment: The location is estimated by a combination of geolocation sources.
     value: 9
 MACCommandIdentifier:
   name: MACCommandIdentifier
@@ -462,24 +446,19 @@ PayloadFormatter:
   name: PayloadFormatter
   values:
   - name: FORMATTER_NONE
-    comment: |2
-       No payload formatter to work with raw payload only.
+    comment: No payload formatter to work with raw payload only.
     value: 0
   - name: FORMATTER_REPOSITORY
-    comment: |2
-       Use payload formatter for the end device type from a repository.
+    comment: Use payload formatter for the end device type from a repository.
     value: 1
   - name: FORMATTER_GRPC_SERVICE
-    comment: |2
-       gRPC service payload formatter. The parameter is the host:port of the service.
+    comment: gRPC service payload formatter. The parameter is the host:port of the service.
     value: 2
   - name: FORMATTER_JAVASCRIPT
-    comment: |2
-       Custom payload formatter that executes Javascript code. The parameter is a JavaScript filename.
+    comment: Custom payload formatter that executes Javascript code. The parameter is a JavaScript filename.
     value: 3
   - name: FORMATTER_CAYENNELPP
-    comment: |2
-       CayenneLPP payload formatter.
+    comment: CayenneLPP payload formatter.
     value: 4
 PingSlotPeriod:
   name: PingSlotPeriod
@@ -502,8 +481,7 @@ PingSlotPeriod:
     value: 7
 PowerState:
   name: PowerState
-  comment: |2
-     Power state of the device.
+  comment: Power state of the device.
   values:
   - name: POWER_UNKNOWN
     value: 0
@@ -611,242 +589,189 @@ RejoinType:
     value: 2
 Right:
   name: Right
-  comment: |2
-     Right is the enum that defines all the different rights to do something in the network.
+  comment: Right is the enum that defines all the different rights to do something in the network.
   values:
   - name: right_invalid
     value: 0
   - name: RIGHT_USER_INFO
-    comment: |2
-       The right to view user information.
+    comment: The right to view user information.
     value: 1
   - name: RIGHT_USER_SETTINGS_BASIC
-    comment: |2
-       The right to edit basic user settings.
+    comment: The right to edit basic user settings.
     value: 2
   - name: RIGHT_USER_SETTINGS_API_KEYS
-    comment: |2
-       The right to view and edit user API keys.
+    comment: The right to view and edit user API keys.
     value: 3
   - name: RIGHT_USER_DELETE
-    comment: |2
-       The right to delete user account.
+    comment: The right to delete user account.
     value: 4
   - name: RIGHT_USER_AUTHORIZED_CLIENTS
-    comment: |2
-       The right to view and edit authorized OAuth clients of the user.
+    comment: The right to view and edit authorized OAuth clients of the user.
     value: 5
   - name: RIGHT_USER_APPLICATIONS_LIST
-    comment: |2
-       The right to list applications the user is a collaborator of.
+    comment: The right to list applications the user is a collaborator of.
     value: 6
   - name: RIGHT_USER_APPLICATIONS_CREATE
-    comment: |2
-       The right to create an application under the user account.
+    comment: The right to create an application under the user account.
     value: 7
   - name: RIGHT_USER_GATEWAYS_LIST
-    comment: |2
-       The right to list gateways the user is a collaborator of.
+    comment: The right to list gateways the user is a collaborator of.
     value: 8
   - name: RIGHT_USER_GATEWAYS_CREATE
-    comment: |2
-       The right to create a gateway under the account of the user.
+    comment: The right to create a gateway under the account of the user.
     value: 9
   - name: RIGHT_USER_CLIENTS_LIST
-    comment: |2
-       The right to list OAuth clients the user is a collaborator of.
+    comment: The right to list OAuth clients the user is a collaborator of.
     value: 10
   - name: RIGHT_USER_CLIENTS_CREATE
-    comment: |2
-       The right to create an OAuth client under the account of the user.
+    comment: The right to create an OAuth client under the account of the user.
     value: 11
   - name: RIGHT_USER_ORGANIZATIONS_LIST
-    comment: |2
-       The right to list organizations the user is a member of.
+    comment: The right to list organizations the user is a member of.
     value: 12
   - name: RIGHT_USER_ORGANIZATIONS_CREATE
-    comment: |2
-       The right to create an organization under the user account.
+    comment: The right to create an organization under the user account.
     value: 13
   - name: RIGHT_USER_ALL
-    comment: |2
-       The pseudo-right for all (current and future) user rights.
+    comment: The pseudo-right for all (current and future) user rights.
     value: 14
   - name: RIGHT_APPLICATION_INFO
-    comment: |2
-       The right to view application information.
+    comment: The right to view application information.
     value: 15
   - name: RIGHT_APPLICATION_SETTINGS_BASIC
-    comment: |2
-       The right to edit basic application settings.
+    comment: The right to edit basic application settings.
     value: 16
   - name: RIGHT_APPLICATION_SETTINGS_API_KEYS
-    comment: |2
-       The right to view and edit application API keys.
+    comment: The right to view and edit application API keys.
     value: 17
   - name: RIGHT_APPLICATION_SETTINGS_COLLABORATORS
-    comment: |2
-       The right to view and edit application collaborators.
+    comment: The right to view and edit application collaborators.
     value: 18
   - name: RIGHT_APPLICATION_SETTINGS_PACKAGES
-    comment: |2
-       The right to view and edit application packages and associations.
+    comment: The right to view and edit application packages and associations.
     value: 56
   - name: RIGHT_APPLICATION_DELETE
-    comment: |2
-       The right to delete application.
+    comment: The right to delete application.
     value: 19
   - name: RIGHT_APPLICATION_DEVICES_READ
-    comment: |2
-       The right to view devices in application.
+    comment: The right to view devices in application.
     value: 20
   - name: RIGHT_APPLICATION_DEVICES_WRITE
-    comment: |2
-       The right to create devices in application.
+    comment: The right to create devices in application.
     value: 21
   - name: RIGHT_APPLICATION_DEVICES_READ_KEYS
-    comment: |2
-       The right to view device keys in application.
-       Note that keys may not be stored in a way that supports viewing them.
+    comment: |-
+      The right to view device keys in application.
+      Note that keys may not be stored in a way that supports viewing them.
     value: 22
   - name: RIGHT_APPLICATION_DEVICES_WRITE_KEYS
-    comment: |2
-       The right to edit device keys in application.
+    comment: The right to edit device keys in application.
     value: 23
   - name: RIGHT_APPLICATION_TRAFFIC_READ
-    comment: |2
-       The right to read application traffic (uplink and downlink).
+    comment: The right to read application traffic (uplink and downlink).
     value: 24
   - name: RIGHT_APPLICATION_TRAFFIC_UP_WRITE
-    comment: |2
-       The right to write uplink application traffic.
+    comment: The right to write uplink application traffic.
     value: 25
   - name: RIGHT_APPLICATION_TRAFFIC_DOWN_WRITE
-    comment: |2
-       The right to write downlink application traffic.
+    comment: The right to write downlink application traffic.
     value: 26
   - name: RIGHT_APPLICATION_LINK
-    comment: |2
-       The right to link as Application to a Network Server for traffic exchange,
-       i.e. read uplink and write downlink (API keys only).
-       This right is typically only given to an Application Server.
-       This right implies RIGHT_APPLICATION_INFO.
+    comment: |-
+      The right to link as Application to a Network Server for traffic exchange,
+      i.e. read uplink and write downlink (API keys only).
+      This right is typically only given to an Application Server.
+      This right implies RIGHT_APPLICATION_INFO.
     value: 27
   - name: RIGHT_APPLICATION_ALL
-    comment: |2
-       The pseudo-right for all (current and future) application rights.
+    comment: The pseudo-right for all (current and future) application rights.
     value: 28
   - name: RIGHT_CLIENT_ALL
-    comment: |2
-       The pseudo-right for all (current and future) OAuth client rights.
+    comment: The pseudo-right for all (current and future) OAuth client rights.
     value: 29
   - name: RIGHT_GATEWAY_INFO
-    comment: |2
-       The right to view gateway information.
+    comment: The right to view gateway information.
     value: 30
   - name: RIGHT_GATEWAY_SETTINGS_BASIC
-    comment: |2
-       The right to edit basic gateway settings.
+    comment: The right to edit basic gateway settings.
     value: 31
   - name: RIGHT_GATEWAY_SETTINGS_API_KEYS
-    comment: |2
-       The right to view and edit gateway API keys.
+    comment: The right to view and edit gateway API keys.
     value: 32
   - name: RIGHT_GATEWAY_SETTINGS_COLLABORATORS
-    comment: |2
-       The right to view and edit gateway collaborators.
+    comment: The right to view and edit gateway collaborators.
     value: 33
   - name: RIGHT_GATEWAY_DELETE
-    comment: |2
-       The right to delete gateway.
+    comment: The right to delete gateway.
     value: 34
   - name: RIGHT_GATEWAY_TRAFFIC_READ
-    comment: |2
-       The right to read gateway traffic.
+    comment: The right to read gateway traffic.
     value: 35
   - name: RIGHT_GATEWAY_TRAFFIC_DOWN_WRITE
-    comment: |2
-       The right to write downlink gateway traffic.
+    comment: The right to write downlink gateway traffic.
     value: 36
   - name: RIGHT_GATEWAY_LINK
-    comment: |2
-       The right to link as Gateway to a Gateway Server for traffic exchange,
-       i.e. write uplink and read downlink (API keys only)
-       This right is typically only given to a gateway.
-       This right implies RIGHT_GATEWAY_INFO.
+    comment: |-
+      The right to link as Gateway to a Gateway Server for traffic exchange,
+      i.e. write uplink and read downlink (API keys only)
+      This right is typically only given to a gateway.
+      This right implies RIGHT_GATEWAY_INFO.
     value: 37
   - name: RIGHT_GATEWAY_STATUS_READ
-    comment: |2
-       The right to view gateway status.
+    comment: The right to view gateway status.
     value: 38
   - name: RIGHT_GATEWAY_LOCATION_READ
-    comment: |2
-       The right to view view gateway location.
+    comment: The right to view view gateway location.
     value: 39
   - name: RIGHT_GATEWAY_ALL
-    comment: |2
-       The pseudo-right for all (current and future) gateway rights.
+    comment: The pseudo-right for all (current and future) gateway rights.
     value: 40
   - name: RIGHT_ORGANIZATION_INFO
-    comment: |2
-       The right to view organization information.
+    comment: The right to view organization information.
     value: 41
   - name: RIGHT_ORGANIZATION_SETTINGS_BASIC
-    comment: |2
-       The right to edit basic organization settings.
+    comment: The right to edit basic organization settings.
     value: 42
   - name: RIGHT_ORGANIZATION_SETTINGS_API_KEYS
-    comment: |2
-       The right to view and edit organization API keys.
+    comment: The right to view and edit organization API keys.
     value: 43
   - name: RIGHT_ORGANIZATION_SETTINGS_MEMBERS
-    comment: |2
-       The right to view and edit organization members.
+    comment: The right to view and edit organization members.
     value: 44
   - name: RIGHT_ORGANIZATION_DELETE
-    comment: |2
-       The right to delete organization.
+    comment: The right to delete organization.
     value: 45
   - name: RIGHT_ORGANIZATION_APPLICATIONS_LIST
-    comment: |2
-       The right to list the applications the organization is a collaborator of.
+    comment: The right to list the applications the organization is a collaborator of.
     value: 46
   - name: RIGHT_ORGANIZATION_APPLICATIONS_CREATE
-    comment: |2
-       The right to create an application under the organization.
+    comment: The right to create an application under the organization.
     value: 47
   - name: RIGHT_ORGANIZATION_GATEWAYS_LIST
-    comment: |2
-       The right to list the gateways the organization is a collaborator of.
+    comment: The right to list the gateways the organization is a collaborator of.
     value: 48
   - name: RIGHT_ORGANIZATION_GATEWAYS_CREATE
-    comment: |2
-       The right to create a gateway under the organization.
+    comment: The right to create a gateway under the organization.
     value: 49
   - name: RIGHT_ORGANIZATION_CLIENTS_LIST
-    comment: |2
-       The right to list the OAuth clients the organization is a collaborator of.
+    comment: The right to list the OAuth clients the organization is a collaborator of.
     value: 50
   - name: RIGHT_ORGANIZATION_CLIENTS_CREATE
-    comment: |2
-       The right to create an OAuth client under the organization.
+    comment: The right to create an OAuth client under the organization.
     value: 51
   - name: RIGHT_ORGANIZATION_ADD_AS_COLLABORATOR
-    comment: |2
-       The right to add the organization as a collaborator on an existing entity.
+    comment: The right to add the organization as a collaborator on an existing entity.
     value: 52
   - name: RIGHT_ORGANIZATION_ALL
-    comment: |2
-       The pseudo-right for all (current and future) organization rights.
+    comment: The pseudo-right for all (current and future) organization rights.
     value: 53
   - name: RIGHT_SEND_INVITES
-    comment: |2
-       The right to send invites to new users.
-       Note that this is not prefixed with "USER_"; it is not a right on the user entity.
+    comment: |-
+      The right to send invites to new users.
+      Note that this is not prefixed with "USER_"; it is not a right on the user entity.
     value: 54
   - name: RIGHT_ALL
-    comment: |2
-       The pseudo-right for all (current and future) possible rights.
+    comment: The pseudo-right for all (current and future) possible rights.
     value: 55
 RxDelay:
   name: RxDelay
@@ -885,28 +810,22 @@ RxDelay:
     value: 15
 State:
   name: State
-  comment: |2
-     State enum defines states that an entity can be in.
+  comment: State enum defines states that an entity can be in.
   values:
   - name: STATE_REQUESTED
-    comment: |2
-       Denotes that the entity has been requested and is pending review by an admin.
+    comment: Denotes that the entity has been requested and is pending review by an admin.
     value: 0
   - name: STATE_APPROVED
-    comment: |2
-       Denotes that the entity has been reviewed and approved by an admin.
+    comment: Denotes that the entity has been reviewed and approved by an admin.
     value: 1
   - name: STATE_REJECTED
-    comment: |2
-       Denotes that the entity has been reviewed and rejected by an admin.
+    comment: Denotes that the entity has been reviewed and rejected by an admin.
     value: 2
   - name: STATE_FLAGGED
-    comment: |2
-       Denotes that the entity has been flagged and is pending review by an admin.
+    comment: Denotes that the entity has been flagged and is pending review by an admin.
     value: 3
   - name: STATE_SUSPENDED
-    comment: |2
-       Denotes that the entity has been reviewed and suspended by an admin.
+    comment: Denotes that the entity has been reviewed and suspended by an admin.
     value: 4
 TxAcknowledgment.Result:
   name: TxAcknowledgment.Result
