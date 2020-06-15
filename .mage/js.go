@@ -146,7 +146,7 @@ func (js Js) DevDeps() error {
 // Deps installs the javascript dependencies.
 func (js Js) Deps() error {
 	files, readErr := ioutil.ReadDir("node_modules")
-	changed, targetErr := target.Path("node_modules", "./package.json", "./yarn.lock")
+	changed, targetErr := target.Path("node_modules", "./package.json", "./yarn.lock", "./sdk/js/dist")
 	// Check whether package.json/yarn.lock are newer than node_modules
 	// and whether it is not only yarn that is installed via DevDeps()
 	if readErr != nil || os.IsNotExist(targetErr) || (targetErr == nil && changed) || len(files) <= 4 {
@@ -157,6 +157,7 @@ func (js Js) Deps() error {
 		if err != nil {
 			return err
 		}
+		mg.Deps(JsSDK.Build)
 		err = yarn("install", "--no-progress", "--production=false")
 		if err != nil {
 			return err
@@ -169,7 +170,7 @@ func (js Js) Deps() error {
 
 // Build runs all necessary commands to build the console bundles and files.
 func (js Js) Build() {
-	mg.SerialDeps(js.Deps, JsSDK.Build, js.BuildDll, js.BuildMain)
+	mg.SerialDeps(js.Deps, js.BuildDll, js.BuildMain)
 }
 
 // BuildMain runs the webpack command with the project config.
@@ -183,6 +184,26 @@ func (js Js) BuildMain() error {
 		return err
 	}
 	return webpack("--config", "config/webpack.config.babel.js")
+}
+
+// BuildIfNecessary builds the frontend bundles but only if source files have
+// been modified.
+func (js Js) BuildIfNecessary() error {
+	changed, err := target.Dir("./public", "./pkg/webui", "./config/webpack.config.babel.js", "./config/webpack.dll.babel.js", "./sdk/js", "./package.json")
+	if err != nil {
+		return err
+	}
+	if changed {
+		if mg.Verbose() {
+			fmt.Println("Building frontend files due to changes in source files...")
+		}
+		mg.Deps(js.Build)
+	} else {
+		if mg.Verbose() {
+			fmt.Println("Skipping frontend build due to no source file changes being detected...")
+		}
+	}
+	return nil
 }
 
 // BuildDll runs the webpack command to build the DLL bundle
