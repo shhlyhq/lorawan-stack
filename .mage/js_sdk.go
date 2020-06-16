@@ -191,12 +191,18 @@ func (k JsSDK) DefinitionsClean(context.Context) error {
 
 // Link links the local sdk package via `yarn link` to prevent caching issues.
 func (k JsSDK) Link() error {
+	if nodeEnv := os.Getenv("NODE_ENV"); nodeEnv != "development" {
+		if mg.Verbose() {
+			fmt.Println("Linking not necessary when in production mode, exiting...")
+		}
+		return nil
+	}
 	fileInfo, err := os.Lstat("./node_modules/ttn-lw")
 
 	if err != nil || fileInfo.Mode()&os.ModeSymlink != os.ModeSymlink {
 		// SDK package is not yet linked
 		if mg.Verbose() {
-			fmt.Println("Linking sdk package…")
+			fmt.Println("Linking sdk package...")
 		}
 
 		y, err := yarn()
