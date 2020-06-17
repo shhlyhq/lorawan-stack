@@ -189,11 +189,13 @@ func (js Js) BuildMain() error {
 // BuildIfNecessary builds the frontend bundles but only if source files have
 // been modified.
 func (js Js) BuildIfNecessary() error {
+	isCI := os.Getenv("CI") == "true"
+	publicExists := pathExists("./public")
 	changed, err := target.Dir("./public", "./pkg/webui", "./config/webpack.config.babel.js", "./config/webpack.dll.babel.js", "./sdk/js", "./package.json")
 	if err != nil {
 		return err
 	}
-	if changed {
+	if (changed && !isCI) || !publicExists {
 		if mg.Verbose() {
 			fmt.Println("Building frontend files due to changes in source files...")
 		}
@@ -250,8 +252,13 @@ func (js Js) ServeMain() error {
 
 // Messages extracts the frontend messages via babel.
 func (js Js) Messages() error {
+	isCI := os.Getenv("CI") == "true"
+	cacheExists := pathExists("./.cache/messages")
 	changed, err := target.Dir("./.cache/messages", "./pkg/webui/console")
-	if os.IsNotExist(err) || (err == nil && changed) {
+	if err != nil {
+		return err
+	}
+	if (changed && !isCI) || !cacheExists {
 		if mg.Verbose() {
 			fmt.Println("Extracting frontend messages...")
 		}
