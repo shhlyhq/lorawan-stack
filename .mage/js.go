@@ -81,11 +81,9 @@ func (js Js) node() (func(args ...string) error, error) {
 	}, nil
 }
 
-func (js Js) execFromNodeBin(cmd string, verbose bool) (func(args ...string) error, error) {
+func execFromNodeBin(cmd string, verbose bool, appendArgs ...string) (func(args ...string) error, error) {
 	if _, err := os.Stat(nodeBin(cmd)); os.IsNotExist(err) {
-		if err = js.DevDeps(); err != nil {
-			return nil, err
-		}
+		mg.Deps(Js.DevDeps)
 	}
 
 	out := os.Stdout
@@ -93,17 +91,17 @@ func (js Js) execFromNodeBin(cmd string, verbose bool) (func(args ...string) err
 		out = nil
 	}
 	return func(args ...string) error {
-		_, err := sh.Exec(nil, out, os.Stderr, nodeBin(cmd), args...)
+		_, err := sh.Exec(nil, out, os.Stderr, nodeBin(cmd), append(args, appendArgs...)...)
 		return err
 	}, nil
 }
 
 func (js Js) webpack() (func(args ...string) error, error) {
-	return js.execFromNodeBin("webpack", false)
+	return execFromNodeBin("webpack", false)
 }
 
 func (js Js) webpackServe() (func(args ...string) error, error) {
-	return js.execFromNodeBin("webpack-dev-server", true)
+	return execFromNodeBin("webpack-dev-server", true)
 }
 
 func (js Js) babel() (func(args ...string) error, error) {
@@ -119,23 +117,23 @@ func (js Js) babel() (func(args ...string) error, error) {
 }
 
 func (js Js) jest() (func(args ...string) error, error) {
-	return js.execFromNodeBin("jest", false)
+	return execFromNodeBin("jest", false)
 }
 
 func (js Js) prettier() (func(args ...string) error, error) {
-	return js.execFromNodeBin("prettier", false)
+	return execFromNodeBin("prettier", false)
 }
 
 func (js Js) eslint() (func(args ...string) error, error) {
-	return js.execFromNodeBin("eslint", false)
+	return execFromNodeBin("eslint", false)
 }
 
 func (js Js) stylint() (func(args ...string) error, error) {
-	return js.execFromNodeBin("stylint", false)
+	return execFromNodeBin("stylint", false)
 }
 
 func (js Js) storybook() (func(args ...string) error, error) {
-	return js.execFromNodeBin("start-storybook", true)
+	return execFromNodeBin("start-storybook", true)
 }
 
 // DevDeps installs the javascript development dependencies.

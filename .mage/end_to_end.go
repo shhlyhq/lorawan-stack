@@ -23,7 +23,6 @@ import (
 	"time"
 
 	"github.com/magefile/mage/mg"
-	"github.com/magefile/mage/sh"
 	"github.com/magefile/mage/target"
 )
 
@@ -44,23 +43,8 @@ func getTestURL() string {
 	return "http://localhost:" + port
 }
 
-func (endToEnd EndToEnd) execFromNodeBin(cmd string, verbose bool, appendArgs ...string) (func(args ...string) error, error) {
-	if _, err := os.Stat(nodeBin(cmd)); os.IsNotExist(err) {
-		mg.Deps(Js.DevDeps)
-	}
-
-	out := os.Stdout
-	if !mg.Verbose() && !verbose {
-		out = nil
-	}
-	return func(args ...string) error {
-		_, err := sh.Exec(nil, out, os.Stderr, nodeBin(cmd), append(args, appendArgs...)...)
-		return err
-	}, nil
-}
-
 func (endToEnd EndToEnd) cypress() (func(args ...string) error, error) {
-	return endToEnd.execFromNodeBin("cypress", true, "--config-file", "./config/cypress.json", "--config", "baseUrl="+getTestURL())
+	return execFromNodeBin("cypress", true, "--config-file", "./config/cypress.json", "--config", "baseUrl="+getTestURL())
 }
 
 func (endToEnd EndToEnd) prepareDB() error {
