@@ -19,8 +19,6 @@ import CONNECTION_STATUS from '@console/constants/connection-status'
 import { getCombinedDeviceId } from '@ttn-lw/lib/selectors/id'
 import { isUnauthenticatedError } from '@ttn-lw/lib/errors/utils'
 
-import { createEventsStatusSelector } from '@console/store/selectors/events'
-
 import {
   createStartEventsStreamActionType,
   createStopEventsStreamActionType,
@@ -31,7 +29,9 @@ import {
   startEventsStreamFailure,
   startEventsStreamSuccess,
   stopEventsStream,
-} from '../../actions/events'
+} from '@console/store/actions/events'
+
+import { createEventsStatusSelector } from '@console/store/selectors/events'
 
 /**
  * Creates `redux-logic` logic from processing entity events.
