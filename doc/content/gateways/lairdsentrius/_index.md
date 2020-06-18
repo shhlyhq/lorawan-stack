@@ -11,7 +11,7 @@ This page contains information about connecting the Laird Sentrius™ RG1xx to {
 
 The technical specifications can be found in [Laird's official documentation](https://www.lairdconnect.com/wireless-modules/lorawan-solutions/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only#documentation). The Laird Sentrius™ RG1xx LoRaWAN Gateway supports two ways to connect with {{% tts %}}, using either the Semtech Packet Router or LoRa Basic Station.
 
-{{< figure src="laird.png" alt="Laird" >}}
+![Laird RG1xx](laird.png)
 
 ## Requirements
 
@@ -35,7 +35,7 @@ The Laird Sentrius™ RG1xx LoRaWAN Gateway features a Wi-Fi quick config that a
 2. From a wirelessly enabled device perform a scan.
 3. Connect to the access point rg1xx29378B, where “29378B” are the last six digits of the Ethernet MAC address found on the label on the bottom of the gateway
 
-> The network is secured with WPA2 with a password that is the same as the SSID.  It is recommended that the default password is changed for security reasons.  The password can be changed on the Wi-Fi -> Advanced web page.
+> The network is secured with WPA2 with a password that is the same as the SSID.  It is recommended that the default password is changed for security reasons.  The password can be changed on the **Wi-Fi > Advanced** web page.
 
 See [Laird's official documentation](https://www.lairdconnect.com/wireless-modules/lorawan-solutions/sentrius-rg1xx-lorawan-gateway-wi-fi-ethernet-optional-lte-us-only#documentation) for more information.
 
@@ -62,7 +62,9 @@ Click on the **Forwarder** tab.
 
 Choose **Semtech Basic Station** as the **Mode**.
 
-Enter the CUPS and LNS configuration information provided.
+Follow the instructions for [Connecting LNS]({{< ref "/gateways/lora-basics-station/lns" >}}).
+
+If using CUPS, following the instructions for [Connecting CUPS]({{< ref "/gateways/lora-basics-station/cups" >}}).
 
 Click Update.
 
