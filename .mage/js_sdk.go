@@ -58,8 +58,13 @@ func (k JsSDK) Deps() error {
 
 // Build builds the source files and output into 'dist'.
 func (k JsSDK) Build() error {
+	isCI := os.Getenv("CI") == "true"
+	distExists := pathExists("./sdk/js/dist")
 	changed, err := target.Dir("./sdk/js/dist", "./sdk/js/src")
-	if os.IsNotExist(err) || (err == nil && changed) {
+	if err != nil {
+		return err
+	}
+	if (changed && !isCI) || !distExists {
 		mg.SerialDeps(JsSDK.Deps, JsSDK.Definitions)
 
 		if mg.Verbose() {
