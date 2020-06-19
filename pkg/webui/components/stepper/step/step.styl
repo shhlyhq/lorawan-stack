@@ -17,7 +17,7 @@
   align-items: flex-start
 
   &:not(:last-child)
-    margin-right: $cs.xs
+    margin-right: $cs.l
 
     .content > .title::after
       display: block
@@ -131,7 +131,7 @@
   .title
     position: relative
     color: $tc-deep-gray
-    padding-right: $cs.xs
+    padding-right: $cs.l
 
     &::after
       content: ''
@@ -149,6 +149,7 @@
     color: $tc-subtle-gray
     margin-bottom: $cs.m
     margin-top: 0
+    max-width: $ls.xxl
 
 +media-query($bp.xxs)
   .step
