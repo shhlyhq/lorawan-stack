@@ -201,6 +201,7 @@ const ConfigurationForm = React.memo(props => {
             required
             autoFocus
             title={sharedMessages.macVersion}
+            description={sharedMessages.macVersionDescription}
             name="lorawan_version"
             component={Select}
             options={LORAWAN_VERSIONS}
