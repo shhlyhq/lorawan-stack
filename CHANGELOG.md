@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to reset end device payload formatters in the Console.
 - Service discovery using DNS SRV records for external Application Server linking.
 - Functionality to set end device attributes in the Console.
+- CLI support for setting and unsetting end device location (see `--location.latitude`, `--location.longitude`, `--location.altitude` and `--location.accuracy` options).
 
 ### Changed
 
@@ -43,7 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Serving frontend sourcemaps in production
 - Frequency plan documentation.
 - LoRa Basics Station documentation.
-- CLI support for setting and unsetting end device location (see `--location.latitude`, `--location.longitude`, `--location.altitude` and `--location.accuracy` options).
 
 ### Changed
 
